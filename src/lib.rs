@@ -1,18 +1,23 @@
 
 //pub mod parser;
+pub trait Config : std::fmt::Debug {
+    fn get_bool(&self) -> bool;
+}
 
 #[derive(Debug)]
-pub struct Config;
-impl Config {
-    pub fn get_bool(&self) -> bool {
+struct ConfigImpl;
+
+impl Config for ConfigImpl {
+    fn get_bool(&self) -> bool {
         true
     }
 }
 
 pub struct ConfigFactory;
+
 impl ConfigFactory {
-    pub fn load() -> Config {
-        Config {}
+    pub fn load() -> Box<Config> {
+        Box::new(ConfigImpl{}) as Box<Config>
     }
 }
 
