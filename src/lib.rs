@@ -17,7 +17,7 @@ pub struct ConfigFactory;
 
 impl ConfigFactory {
     pub fn load() -> Box<Config> {
-        Box::new(ConfigImpl{}) as Box<Config>
+        Box::new(ConfigImpl{})
     }
 }
 
