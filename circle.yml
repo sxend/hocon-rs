@@ -1,0 +1,19 @@
+machine:
+  pre:
+    - echo '' > $HOME/.gitconfig
+dependencies:
+  pre:
+    - curl https://sh.rustup.rs -sSf | sh -s -- -y
+    - echo 'export PATH=$PATH:$HOME/.cargo/bin' >> $HOME/.bashrc
+  override:
+    - cargo build --release
+test:
+  override:
+    - cargo test
+deployment:
+  release:
+    branch: master
+    commands:
+      - aws s3 cp ./scripts/deploy.sh s3://public.arimit.su/www.arimit.su/scripts/deploy.sh
+      - docker push ${DOCKER_TAG}
+      - sed "s/<APP_VERSION>/${APP_VERSION}/" README.md | tail
