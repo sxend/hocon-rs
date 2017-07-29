@@ -27,7 +27,7 @@ impl Config for ConfigImpl {
         self.underlying.get(key).map(|x| { x.to_string()})
     }
 
-    fn get_config(&self, key: &String) -> Option<BoxConfig>{
+    fn get_config(&self, key: &String) -> Option<BoxConfig> {
         unimplemented!()
     }
 }
