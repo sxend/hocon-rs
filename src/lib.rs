@@ -50,7 +50,6 @@ impl ConfigFactory {
             Ok(file) => ConfigFactory::parse_from_file(&file),
             Err(t) => Err(t)
         }
-
     }
     pub fn parse_from_file(mut config_file: &File) -> Result<Config, Error> {
         let mut config_string = String::new();
