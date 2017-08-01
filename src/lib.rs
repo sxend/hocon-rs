@@ -20,20 +20,20 @@ impl ConfigValue {
 }
 
 impl Config {
-    pub fn get_bool(&self, key: &String) -> Option<bool> {
+    pub fn get_bool(&self, key: &str) -> Option<bool> {
         match self.underlying.get(key) {
-            Some(&ConfigValue::Bool(ref value)) => Some(*value),
+            Some(&ConfigValue::Bool(value)) => Some(value),
             _ => None
         }
     }
-    pub fn get_string(&self, key: &String) -> Option<String> {
+    pub fn get_string(&self, key: &str) -> Option<String> {
         match self.underlying.get(key) {
             Some(&ConfigValue::String(ref value)) => Some(value.to_owned()),
             _ => None
         }
     }
 
-    pub fn get_config(&self, key: &String) -> Option<Config> {
+    pub fn get_config(&self, key: &str) -> Option<Config> {
         match self.underlying.get(key) {
             Some(&ConfigValue::Config(ref value)) => Some(value.to_owned()),
             _ => None
